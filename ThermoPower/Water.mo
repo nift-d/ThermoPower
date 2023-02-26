@@ -4212,7 +4212,7 @@ Extends the <tt>ValveBase</tt> model (see the corresponding documentation for co
   end ValveLiq;
 
   model ValveVap "Valve for steam flow"
-    extends BaseClasses.ValveBase;
+    extends ThermoPower.Water.BaseClasses.ValveBase;
     import ThermoPower.Choices.Valve.CvTypes;
     parameter Real Fxt_full=0.5 "Fk*xt critical ratio at full opening";
     replaceable function xtfun = Functions.ValveCharacteristics.one
@@ -4422,7 +4422,7 @@ li><i>1 Jul 2004</i>
     omega = der(phi);
     W = omega*MechPort.tau;
 
-    n = Modelica.SIunits.Conversions.to_rpm(omega) "Rotational speed";
+    n = Modelica.Units.SI.Conversions.to_rpm(omega) "Rotational speed";
     annotation (
       Icon(graphics={Text(extent={{-10,104},{18,84}}, textString="Np")}),
       Diagram(graphics),
@@ -4766,7 +4766,7 @@ li><i>1 Jul 2004</i>
   end BarometricCondenser;
 
   model CoolingTower "Cooling tower with variable speed fan"
-    import Modelica.SIunits.Conversions;
+    import Modelica.Units.SI.Conversions;
     package Water = Modelica.Media.Water.StandardWater;
     package DryAir = Modelica.Media.Air.SimpleAir;
 
@@ -5778,7 +5778,7 @@ Basic interface of the <tt>Flow1D</tt> models, containing the common parameters 
         annotation(Dialog(group="External inputs"), choices(checkBox=true));
       parameter Units.LiquidDensity rho0=1000 "Nominal Liquid Density"
         annotation (Dialog(group="Characteristics"));
-      parameter NonSI.AngularVelocity_rpm n0 "Nominal rotational speed"
+      parameter Modelica.Units.NonSI.AngularVelocity_rpm n0 "Nominal rotational speed"
         annotation (Dialog(group="Characteristics"));
       parameter SI.Volume V=0 "Pump Internal Volume" annotation (Evaluate=true);
       parameter Boolean CheckValve=false "Reverse flow stopped";
@@ -5829,7 +5829,7 @@ Basic interface of the <tt>Flow1D</tt> models, containing the common parameters 
       Medium.SpecificEnthalpy hout "Enthalpy of outgoing fluid";
       Units.LiquidDensity rho "Liquid density";
       Medium.Temperature Tin "Liquid inlet temperature";
-      NonSI.AngularVelocity_rpm n "Shaft r.p.m.";
+      Modelica.Units.NonSI.AngularVelocity_rpm n "Shaft r.p.m.";
       Integer Np(min=1) "Number of pumps in parallel";
       SI.Power W_single "Power Consumption (single pump)";
       SI.Power W=Np*W_single "Power Consumption (total)";
