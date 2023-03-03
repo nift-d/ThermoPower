@@ -1155,6 +1155,7 @@ outlet is ignored; use <t>Pump</t> models if this has to be taken into account c
   model Flow1DFV
     "1-dimensional fluid flow model for water/steam (finite volumes)"
     extends BaseClasses.Flow1DBase;
+    extends Icons.Water.Tube;
     import ThermoPower.Choices.Flow1D.FFtypes;
     import ThermoPower.Choices.Flow1D.HCtypes;
 
@@ -1467,6 +1468,7 @@ outlet is ignored; use <t>Pump</t> models if this has to be taken into account c
 
   model Flow1DFV2ph
     "1-dimensional fluid flow model for water/steam (finite volumes, 2-phase)"
+    extends Icons.Water.Tube;
     extends BaseClasses.Flow1DBase(redeclare replaceable package Medium =
           StandardWater "Medium model" constrainedby
         Modelica.Media.Interfaces.PartialTwoPhaseMedium,
@@ -1881,6 +1883,7 @@ enthalpy between the nodes; this requires the availability of the time derivativ
 
   model Flow1DFEM
     "1-dimensional fluid flow model for water/steam (finite elements)"
+    extends Icons.Water.Tube;
     extends BaseClasses.Flow1DBase(Nw = N);
     replaceable model HeatTransfer = Thermal.HeatTransferFEM.IdealHeatTransfer
       constrainedby ThermoPower.Thermal.BaseClasses.DistributedHeatTransferFEM
@@ -2353,6 +2356,7 @@ enthalpy between the nodes; this requires the availability of the time derivativ
 
   model Flow1DFEM2ph
     "1-dimensional fluid flow model for water/steam (finite elements)"
+    extends Icons.Water.Tube;
     extends BaseClasses.Flow1DBase(
       Nw = N,
       redeclare replaceable package Medium = StandardWater "Medium model"
@@ -4171,6 +4175,7 @@ adding a specific geometry and the computation of the level from the liquid volu
 
   model ValveLiq "Valve for liquid water flow"
     extends BaseClasses.ValveBase;
+    extends Icons.Water.Valve;
     import ThermoPower.Choices.Valve.CvTypes;
   initial equation
     if CvData == CvTypes.OpPoint then
@@ -4213,6 +4218,7 @@ Extends the <tt>ValveBase</tt> model (see the corresponding documentation for co
 
   model ValveVap "Valve for steam flow"
     extends ThermoPower.Water.BaseClasses.ValveBase;
+    extends Icons.Water.Valve;
     import ThermoPower.Choices.Valve.CvTypes;
     parameter Real Fxt_full=0.5 "Fk*xt critical ratio at full opening";
     replaceable function xtfun = Functions.ValveCharacteristics.one
@@ -4286,6 +4292,7 @@ Extends the <tt>ValveBase</tt> model (see the corresponding documentation for co
 
   model ValveLiqChoked
     "Valve for liquid water flow, allows choked flow conditions"
+    extends Icons.Water.Valve;
     extends BaseClasses.ValveBase(redeclare replaceable package Medium =
           StandardWater constrainedby
         Modelica.Media.Interfaces.PartialTwoPhaseMedium);
@@ -4348,6 +4355,7 @@ li><i>1 Jul 2004</i>
 
   model Pump "Centrifugal pump with ideally controlled speed"
     extends BaseClasses.PumpBase;
+    extends ThermoPower.Icons.Water.Pump;
     parameter NonSI.AngularVelocity_rpm n_const=n0 "Constant rotational speed"
       annotation(Dialog(enable = not use_in_n));
     Modelica.Blocks.Interfaces.RealInput in_n if use_in_n "RPM" annotation (Placement(
@@ -6427,6 +6435,7 @@ This model is not yet complete
     "1-dimensional fluid flow model for water/steam (finite volumes)"
     extends BaseClasses.Flow1DBase;
     extends Modelica.Icons.ObsoleteModel;
+    extends ThermoPower.Icons.Water.Tube;
     replaceable ThermoPower.Thermal.DHT wall(N=N) annotation (Dialog(enable=
             false), Placement(transformation(extent={{-40,40},{40,60}},
             rotation=0)));
@@ -6714,6 +6723,7 @@ This model is not yet complete
   model Flow1D2ph
     "1-dimensional fluid flow model for water/steam (finite volumes, 2-phase)"
     extends Modelica.Icons.ObsoleteModel;
+    extends Icons.Water.Tube;
     extends BaseClasses.Flow1DBase(redeclare replaceable package Medium =
           StandardWater "Medium model" constrainedby
         Modelica.Media.Interfaces.PartialTwoPhaseMedium,
@@ -7475,6 +7485,7 @@ enthalpy between the nodes; this requires the availability of the time derivativ
   model Flow1Dfem
     "1-dimensional fluid flow model for water/steam (finite elements)"
     extends Modelica.Icons.ObsoleteModel;
+    extends ThermoPower.Icons.Water.Tube;
     extends BaseClasses.Flow1DBase;
     replaceable ThermoPower.Thermal.DHT wall(N=N) annotation (Dialog(enable=
             false), Placement(transformation(extent={{-40,40},{40,60}},
@@ -7921,6 +7932,7 @@ enthalpy between the nodes; this requires the availability of the time derivativ
   model Flow1Dfem2ph
     "1-dimensional fluid flow model for water/steam (finite elements)"
     extends Modelica.Icons.ObsoleteModel;
+    extends ThermoPower.Icons.Water.Tube;
     import Modelica.Math.*;
     import ThermoPower.Choices.Flow1D.FFtypes;
     import ThermoPower.Choices.Flow1D.HCtypes;
